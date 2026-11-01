@@ -62,3 +62,310 @@ svg{max-width:100%}.grid-2,
 @media (max-width:380px){.language-switch button{min-width:28px;padding:7px 4px;font-size:.65rem}}
 
 @media(max-width:1140px){body[data-page="treasure"] .main-nav,body[data-page="treasure"] .main-nav.is-open{background:#EFE6DE!important;border-color:#d9c7ba!important}body[data-page="treasure"] .main-nav a{color:#522B1B!important}}
+
+
+/* =========================================================
+   Mobile comfort pass: touch targets, safe areas and layouts
+   ========================================================= */
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+body { overflow-x: clip; }
+img, video, iframe { max-width: 100%; }
+
+@media (max-width: 760px) {
+  :root { --header-height: 72px; --page-gutter: 14px; }
+
+  body { font-size: 16px; line-height: 1.58; }
+  #siteHeader {
+    position: sticky !important;
+    top: 0 !important;
+    height: auto !important;
+    z-index: 3000 !important;
+    padding-top: env(safe-area-inset-top, 0px);
+  }
+  #siteHeader > .site-header,
+  .site-header {
+    position: relative !important;
+    inset: auto !important;
+    width: 100%;
+    height: auto !important;
+    min-height: 0;
+  }
+  .site-header .header-inner {
+    width: 100%;
+    min-height: 68px;
+    height: auto;
+    padding: 8px 14px;
+    gap: 8px;
+    align-items: center;
+  }
+  .brand {
+    flex: 1 1 auto;
+    min-width: 0;
+    max-width: calc(100% - 132px);
+    white-space: normal;
+    font-size: .88rem;
+    line-height: 1.18;
+    gap: 0;
+  }
+  .brand > span:last-child { min-width: 0; }
+  .brand small { display: none !important; }
+  .brand-mark { display: none !important; }
+  .header-actions { flex: 0 0 auto; gap: 7px; margin-left: auto; }
+  .language-button.language-switch {
+    min-height: 42px;
+    padding: 3px;
+    gap: 2px;
+    border-radius: 10px;
+  }
+  .language-switch button {
+    min-width: 36px;
+    min-height: 34px;
+    padding: 7px 6px;
+    font-size: .7rem;
+  }
+  .menu-button {
+    display: inline-grid !important;
+    place-items: center;
+    width: 44px;
+    min-width: 44px;
+    height: 44px;
+    min-height: 44px;
+    flex: 0 0 44px;
+    padding: 0;
+    font-size: 1.15rem;
+  }
+  .main-nav,
+  .main-nav.is-open {
+    position: absolute;
+    top: 100%;
+    left: 10px;
+    right: 10px;
+    z-index: 3001;
+    display: none;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 3px;
+    width: auto;
+    max-height: min(72dvh, 560px);
+    margin: 0;
+    padding: 10px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    background: var(--cream);
+    box-shadow: 0 12px 32px rgba(40, 24, 15, .16);
+  }
+  .main-nav.is-open { display: flex; }
+  .main-nav a {
+    display: flex;
+    align-items: center;
+    min-height: 46px;
+    padding: 11px 13px;
+    border-radius: 9px;
+    font-size: .96rem;
+  }
+
+  .container { width: calc(100% - 28px); }
+  .page-hero { padding: 28px 0 20px; }
+  .page-hero h1 { max-width: 100%; font-size: clamp(2rem, 9vw, 2.8rem); line-height: 1.08; }
+  .page-hero .lead { max-width: 100%; font-size: 1rem; line-height: 1.55; }
+  .hero-panel { padding: clamp(20px, 5vw, 30px); border-radius: 17px; }
+  .hero-panel::after { content: none !important; display: none !important; }
+  .section { padding: 20px 0 34px; }
+  .section-head { align-items: flex-start; gap: 8px; margin-bottom: 17px; }
+  .section-head h2 { margin-bottom: 4px; }
+  .section-head p { max-width: 100%; }
+  h1, h2, h3, h4, p, li, label, a, button { overflow-wrap: anywhere; }
+
+  .grid { gap: 14px; }
+  .grid-2, .grid-3, .grid-4, .grid-5,
+  .stats-overview, .footer-inner, .treasure-grid,
+  .treasure-groups, .guide-route-columns,
+  .guide-itinerary-grid, .exhibition-preview-grid,
+  .lab-home-cards, .heritage-map-layout,
+  .heritage-map-side, .route-prep-checklist,
+  .people-story, .form-grid, .route-filters,
+  .lab-map-tools, .lab-form-row, .exhibition-form-top,
+  .action-planner-row, #treasureAchievements {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+  .grid-2 > *, .grid-3 > *, .grid-4 > *, .grid-5 > * { min-width: 0; }
+  .card, .block, .action-card { min-width: 0; border-radius: 14px; }
+  .card-body { padding: 16px; }
+  .block { padding: 17px; }
+  .action-card { min-height: 0; padding: 18px; }
+  .heritage-card { min-height: 270px; }
+  .heritage-copy { padding: 18px; }
+  .stat-card { min-height: 126px; padding: 16px; }
+  .stats-breakdown { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 9px; }
+  .vote-options { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 9px; }
+  .vote-option { min-height: 50px; padding: 12px 8px; font-size: 1.05rem; }
+
+  /* Comfortable touch areas and iOS form sizing */
+  .btn, .tab-btn, .region-tags button, .expand-btn,
+  .audio-play, .sound-toggle, .profile-name-controls button,
+  .saved-route-actions button {
+    min-height: 44px;
+  }
+  .btn { width: 100%; padding: 12px 14px; line-height: 1.3; }
+  .btn-sm { padding: 10px 12px; font-size: .88rem; }
+  .btn:hover, .card:hover, .vote-option:hover { transform: none; }
+  .card:hover .card-image img, .card:hover .ritual-media img { transform: none; }
+  .field, .select, input, select, textarea {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    min-height: 46px;
+    font-size: 16px !important;
+  }
+  textarea { min-height: 120px; resize: vertical; }
+  .filters, .form-actions, .place-story-actions,
+  .guide-route-card-actions, .route-filter-footer {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 9px;
+    width: 100%;
+  }
+  .filters > *, .form-actions > *, .place-story-actions > *,
+  .guide-route-card-actions > *, .route-filter-footer > * { width: 100%; }
+  .filters .field, .filters .select { min-width: 0; }
+  .region-tags, .view-tabs { gap: 7px; }
+  .region-tags button, .tab-btn { padding: 10px 12px; }
+
+  /* Maps, timelines and long route cards */
+  .map-board { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+  .map-zone { min-height: 82px; padding: 9px; font-size: .82rem; }
+  .timeline-scroller { max-width: 100%; overflow-x: auto; padding-bottom: 8px; touch-action: pan-x; }
+  .timeline { width: max-content; }
+  .epoch-button { width: 160px !important; min-height: 120px; }
+  .epoch-detail.is-open { grid-template-columns: minmax(0, 1fr); max-height: none; padding: 14px; }
+  .epoch-detail img { height: 190px; }
+  .guide-itinerary-stop { grid-template-columns: minmax(0, 1fr) !important; gap: 12px; }
+  .guide-stop-photo, .guide-stop-photo img { height: auto; min-height: 0; aspect-ratio: 16 / 9; }
+  .guide-route-card-actions { margin-top: 14px; }
+  .route-stop { align-items: flex-start; flex-wrap: wrap; gap: 10px; }
+  .route-stop-copy { width: 100%; min-width: 0; }
+  .route-stop-actions { width: 100%; margin-left: 0; }
+  .route-stop-actions .btn { width: 100%; }
+  .route-prep-checklist { gap: 9px; }
+  .map-pieces { gap: 8px; }
+  .map-piece { min-height: 42px; padding: 10px 12px; }
+
+  /* Audio, chronology and forms */
+  .ritual-card .card-body { padding: 15px; }
+  .ritual-audio-player, .ritual-card .ritual-audio-player { width: 100%; height: 42px; }
+  .ritual-actions { display: grid; grid-template-columns: minmax(0, 1fr); gap: 8px; }
+  .ritual-actions .btn { width: 100%; }
+  .sound-row { grid-template-columns: minmax(0, 1fr); gap: 9px; }
+  .sound-row button { width: 100%; }
+  .wave { max-width: 100%; overflow: hidden; }
+  .chronicle-card .before-after { height: 210px; }
+  .chronicle-content { padding: 16px; }
+  .form-grid { gap: 12px; }
+  .form-grid .full { grid-column: auto; }
+  .people-story img { height: auto; max-height: 280px; aspect-ratio: 4 / 3; }
+  .story-fragment { align-items: flex-start; flex-wrap: wrap; }
+  .story-move { margin-left: 0; }
+
+  /* Modals and images use the full phone viewport */
+  .modal-backdrop, .image-modal { padding: 10px; }
+  .modal {
+    width: 100%;
+    max-width: 100%;
+    max-height: calc(100dvh - 20px);
+    padding: 20px 16px calc(22px + env(safe-area-inset-bottom, 0px));
+    border-radius: 15px;
+    overscroll-behavior: contain;
+  }
+  body.modal-open .modal-backdrop.place-story-open {
+    inset: 0 !important;
+    height: 100dvh !important;
+    max-height: 100dvh !important;
+    padding: 0 !important;
+    align-items: stretch !important;
+  }
+  body.modal-open .place-story-open .modal.place-story-sheet {
+    width: 100vw !important;
+    max-width: 100vw !important;
+    height: 100dvh !important;
+    max-height: 100dvh !important;
+    margin: 0 !important;
+    border-radius: 0 !important;
+    padding: 16px 15px calc(24px + env(safe-area-inset-bottom, 0px));
+  }
+  .place-story-hero { grid-template-columns: minmax(0, 1fr); min-height: 0; }
+  .place-story-hero > img { width: 100%; height: auto; min-height: 0; max-height: 230px; aspect-ratio: 16 / 9; }
+  .place-story-heading { padding: 18px 15px; }
+  .place-story-heading h2 { font-size: clamp(1.65rem, 7vw, 2.2rem); }
+  .place-story-body { padding: 18px 15px 25px; }
+  .place-story-actions { display: grid; }
+  .modal-close, .image-modal button { width: 44px; height: 44px; min-width: 44px; min-height: 44px; }
+  .image-modal img { max-width: 100%; max-height: 78dvh; object-fit: contain; }
+
+  .site-footer { padding: 28px 0 calc(28px + env(safe-area-inset-bottom, 0px)); }
+  .footer-inner { gap: 18px; }
+  .footer-inner > div:first-child { grid-column: auto; }
+  .footer-links { gap: 3px; }
+  .footer-links a { display: inline-flex; align-items: center; min-height: 42px; }
+  .toast { left: 12px; right: 12px; bottom: calc(12px + env(safe-area-inset-bottom, 0px)); width: auto; text-align: center; }
+}
+
+@media (max-width: 390px) {
+  :root { --page-gutter: 12px; }
+  .site-header .header-inner { padding-left: 10px; padding-right: 10px; gap: 6px; }
+  .brand { max-width: calc(100% - 122px); font-size: .8rem; }
+  .language-switch button { min-width: 32px; padding: 7px 4px; font-size: .66rem; }
+  .header-actions { gap: 5px; }
+  .menu-button { width: 42px; min-width: 42px; flex-basis: 42px; height: 42px; min-height: 42px; }
+  .container { width: calc(100% - 24px); }
+  .block { padding: 14px; }
+  .card-body { padding: 14px; }
+  .stats-breakdown { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .map-board { gap: 6px; }
+  .map-zone { min-height: 74px; padding: 7px; font-size: .75rem; }
+}
+
+@media (max-width: 340px) {
+  .brand { font-size: .74rem; max-width: calc(100% - 116px); }
+  .language-switch button { min-width: 29px; font-size: .62rem; }
+  .menu-button { width: 40px; min-width: 40px; flex-basis: 40px; }
+}
+
+@media (max-width: 900px) and (orientation: landscape) {
+  .main-nav, .main-nav.is-open { max-height: 62dvh; }
+  .modal { max-height: calc(100dvh - 16px); }
+  body.modal-open .place-story-open .modal.place-story-sheet { overflow-y: auto; }
+}
+
+@media (hover: none) and (pointer: coarse) {
+  .btn, .tab-btn, .region-tags button, .expand-btn,
+  .main-nav a, .language-switch button, .menu-button,
+  .audio-play, .sound-toggle { -webkit-tap-highlight-color: transparent; }
+  .btn, .tab-btn, .region-tags button, .main-nav a,
+  .language-switch button, .menu-button { touch-action: manipulation; }
+}
+
+/* Decorative sticker-like glyphs are intentionally omitted. */
+.hero-panel::after,
+.guide-stop-photo.image-missing::after,
+.guide-itinerary-card .guide-theme-image.image-missing::after,
+.guide-stop-task > summary::before {
+  content: none !important;
+  display: none !important;
+}
+body[data-page="treasure"] .account-avatar { display: none !important; }
+
+
+@media (max-width: 760px) {
+  .guide-stop-task > summary {
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--line);
+    cursor: pointer;
+  }
+  .guide-stop-task > summary::before { content: none !important; display: none !important; }
+}
