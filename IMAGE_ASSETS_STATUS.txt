@@ -1,0 +1,63 @@
+ФОТОГРАФИИ, КОТОРЫЕ НУЖНО ДОБАВИТЬ
+
+В загруженном исходном ZIP не было бинарных файлов изображений: папка image/ содержала только инструкции. Поэтому настоящие фотографии не могут отображаться до добавления соответствующих файлов.
+
+Добавьте перечисленные файлы в папку image/ с точными именами:
+- image/1.png
+- image/10.jpg
+- image/11.jpg
+- image/12.jpg
+- image/13.jpg
+- image/14.jpg
+- image/15.jpg
+- image/16.jpg
+- image/17.jpg
+- image/18.png
+- image/19.png
+- image/2.png
+- image/20.jpg
+- image/21.jpg
+- image/22.jpg
+- image/23.jpg
+- image/24.jpg
+- image/25.jpg
+- image/26.jpg
+- image/27.jpg
+- image/28.jpg
+- image/29.jpg
+- image/3.png
+- image/4.png
+- image/40.jpg
+- image/41.jpg
+- image/42.jpg
+- image/43.jpg
+- image/44.jpg
+- image/45.jpg
+- image/46.jpg
+- image/47.jpg
+- image/48.jpg
+- image/49.jpg
+- image/5.png
+- image/50.jpg
+- image/51.jpg
+- image/52.jpg
+- image/53.jpg
+- image/54.jpg
+- image/55.jpg
+- image/56.jpg
+- image/57.jpg
+- image/58.png
+- image/59.jpg
+- image/6.png
+- image/60.jpg
+- image/64.jpg
+- image/65.jpg
+- image/66.jpg
+- image/67.jpg
+- image/68.jpg
+- image/69.jpg
+- image/7.png
+- image/8.png
+- image/9.png
+
+После добавления файлов существующие пути в js/data.js и js/main.js начнут работать без изменения кода. Не удаляйте и не переименовывайте файлы.

@@ -507,3 +507,44 @@ body[data-page="treasure"] .account-avatar { display: none !important; }
 }
 
 @media (max-width:760px){.reveal{opacity:1!important;transform:none!important;transition:none!important}.card,.block,.stat-card{animation:none!important}.main-nav{will-change:auto}}
+
+
+/* Missing-media fallback: keep the designed image area visible when the project archive
+   does not contain the referenced photo. Real local photos replace this automatically. */
+.card-image.image-missing,
+.ritual-media.image-missing,
+.guide-stop-photo.image-missing,
+.guide-theme-image.image-missing {
+  display: grid !important;
+  position: relative;
+  place-items: center;
+  min-height: 150px;
+  overflow: hidden;
+  background: linear-gradient(135deg, rgba(175,203,250,.72), rgba(239,230,222,.96)) !important;
+}
+.card-image.image-missing::after,
+.ritual-media.image-missing::after,
+.guide-stop-photo.image-missing::after,
+.guide-theme-image.image-missing::after {
+  content: "Фота не загружана / Фото не загружено" !important;
+  position: absolute;
+  inset: 0;
+  display: grid !important;
+  place-items: center;
+  padding: 18px;
+  color: #522B1B !important;
+  background: transparent !important;
+  font-size: .88rem;
+  font-weight: 600;
+  text-align: center;
+}
+.card-image.image-missing img,
+.ritual-media.image-missing img,
+.guide-stop-photo.image-missing img,
+.guide-theme-image.image-missing img { display: none !important; }
+@media (max-width: 760px) {
+  .card-image.image-missing,
+  .ritual-media.image-missing,
+  .guide-stop-photo.image-missing,
+  .guide-theme-image.image-missing { min-height: 132px; }
+}
