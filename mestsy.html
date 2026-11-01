@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="be">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#AFCBFA">
+  <meta name="description" content="Каталог гістарычных мясцін Беларусі">
+  <title>Спадчына Беларусі — Месцы</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body data-page="places" class="page-enter">
+  <a class="skip-link" href="#pageContent" data-by="Перайсці да асноўнага змесціва" data-ru="Перейти к основному содержимому">Перайсці да асноўнага змесціва</a>
+
+  <div id="siteHeader" role="banner" aria-label="Навігацыя сайта">
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="brand" href="index.html" aria-label="Спадчына Беларусі — галоўная">
+          <span class="brand-mark" aria-hidden="true">✳</span>
+          <span>Спадчына Беларусі<small data-by="Жывая памяць" data-ru="Живая память">Жывая памяць</small></span>
+        </a>
+        <nav class="main-nav" id="mainNav" aria-label="Галоўная навігацыя">
+          <a href="index.html" data-page-link="home" data-by="Галоўная" data-ru="Главная">Галоўная</a>
+          <a href="mestsy.html" data-page-link="places" data-by="Месцы" data-ru="Места">Месцы</a>
+          <a href="abrady.html" data-page-link="rituals" data-by="Абрады" data-ru="Обряды">Абрады</a>
+          <a href="hronika.html" data-page-link="chronicle" data-by="Хроніка" data-ru="Хроника">Хроніка</a>
+          <a href="putevoditel.html" data-page-link="guide" data-by="Маршруты" data-ru="Маршруты">Маршруты</a>
+          <a href="skarbonka.html" data-page-link="treasure" data-by="Скарбонка" data-ru="Копилка">Скарбонка</a>
+        </nav>
+        <div class="header-actions">
+          <div class="language-button language-switch" data-lang-switch role="group" aria-label="Мова сайта">
+            <button type="button" data-lang-choice="by" aria-label="Беларуская мова" aria-pressed="true" title="Беларуская мова">БЕЛ</button>
+            <button type="button" data-lang-choice="ru" aria-label="Русский язык" aria-pressed="false" title="Русский язык">РУС</button>
+          </div>
+          <button class="menu-button" id="menuButton" type="button" aria-label="Меню" aria-expanded="false">☰</button>
+        </div>
+      </div>
+    </header>
+  </div>
+
+  <main id="pageContent" tabindex="-1" aria-label="Асноўнае змесціва"></main>
+
+  <div id="siteFooter" role="contentinfo" aria-label="Падвал сайта">
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <div>
+          <div class="footer-title">Спадчына Беларусі</div>
+        </div>
+        <div>
+          <h3 data-by="Даследуйце" data-ru="Исследуйте">Даследуйце</h3>
+          <div class="footer-links">
+            <a href="mestsy.html" data-by="Матэрыяльная спадчына" data-ru="Материальное наследие">Матэрыяльная спадчына</a>
+            <a href="abrady.html" data-by="Жывыя традыцыі" data-ru="Живые традиции">Жывыя традыцыі</a>
+            <a href="hronika.html" data-by="Спадчына ў небяспецы" data-ru="Наследие в опасности">Спадчына ў небяспецы</a>
+            <a href="putevoditel.html" data-by="Маршруты па спадчыне" data-ru="Маршруты по наследию">Маршруты па спадчыне</a>
+          </div>
+        </div>
+        <div>
+          <h3 data-by="Афіцыйныя крыніцы" data-ru="Официальные источники">Афіцыйныя крыніцы</h3>
+          <div class="footer-links">
+            <a href="https://president.gov.by/ru/belarus/social/culture/istoriko-kulturnoe-nasledie" target="_blank" rel="noopener noreferrer" data-by="Партал Прэзідэнта — гісторыка-культурная спадчына" data-ru="Портал Президента — историко-культурное наследие">Партал Прэзідэнта — гісторыка-культурная спадчына</a>
+            <a href="https://gosspisok.gov.by/" target="_blank" rel="noopener noreferrer" data-by="Дзяржаўны спіс гісторыка-культурных каштоўнасцей" data-ru="Государственный список историко-культурных ценностей">Дзяржаўны спіс гісторыка-культурных каштоўнасцей</a>
+            <a href="https://kultura.gov.by/nasledie/" target="_blank" rel="noopener noreferrer" data-by="Міністэрства культуры — спадчына" data-ru="Министерство культуры — наследие">Міністэрства культуры — спадчына</a>
+            <a href="https://www.archives.gov.by/" target="_blank" rel="noopener noreferrer" data-by="Архівы Беларусі" data-ru="Архивы Беларуси">Архівы Беларусі</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <div class="image-modal" id="imageModal" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Прагляд выявы">
+    <button type="button" id="imageModalClose" aria-label="Закрыць выяву">×</button>
+    <img alt="" src="" id="imageModalImg">
+  </div>
+  <div class="modal-backdrop" id="globalModal" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-label="Падрабязная інфармацыя">
+      <button class="modal-close" type="button" data-close-modal aria-label="Закрыць акно">×</button>
+      <div id="globalModalContent"></div>
+    </div>
+  </div>
+
+  <noscript>
+    <aside class="noscript-message">
+      <p>Для паўнавартаснай працы сайта трэба ўключыць JavaScript. Вы можаце перайсці да асноўных раздзелаў:</p>
+      <nav aria-label="Раздзелы сайта">
+        <a href="index.html">Галоўная</a><a href="mestsy.html">Месцы</a><a href="abrady.html">Абрады</a>
+        <a href="hronika.html">Хроніка</a><a href="putevoditel.html">Маршруты</a><a href="skarbonka.html">Скарбонка</a>
+      </nav>
+    </aside>
+  </noscript>
+
+  <script src="js/data.js"></script>
+  <script src="js/lang.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/skarbonka.js"></script>
+</body>
+</html>
