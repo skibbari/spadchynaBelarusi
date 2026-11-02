@@ -3,8 +3,9 @@
   const K='spadchyna-lang';
   let memoryLang='by';
   const validLang=l=>l==='ru'?'ru':'by';
-  const readLang=()=>{try{return validLang(localStorage.getItem(K)||memoryLang)}catch(_){return memoryLang}};
-  const saveLang=l=>{memoryLang=l;try{localStorage.setItem(K,l)}catch(_){/* localStorage может быть недоступен для file:// */}};
+  const store=window.SPStorage||{get:(k,d=null)=>{try{return localStorage.getItem(k)??d}catch(_){return d}},set:(k,v)=>{try{localStorage.setItem(k,String(v))}catch(_){}}};
+  const readLang=()=>validLang(store.get(K,memoryLang)||memoryLang);
+  const saveLang=l=>{memoryLang=l;store.set(K,l)};
   const applyLang=(l,notify)=>{
     l=validLang(l);
     document.documentElement.lang=l==='ru'?'ru':'be';

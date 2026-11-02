@@ -8,6 +8,7 @@
   <title>Спадчына Беларусі — Галоўная</title>
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/footer-fix.css?v=20261102-3">
 </head>
 <body data-page="home" class="page-enter">
   <a class="skip-link" href="#pageContent" data-by="Перайсці да асноўнага змесціва" data-ru="Перейти к основному содержимому">Перайсці да асноўнага змесціва</a>
@@ -39,15 +40,6 @@
 
   <main id="pageContent" tabindex="-1" aria-label="Асноўнае змесціва"></main>
 
-  
-  <div class="toast" id="toast" role="status" aria-live="polite"></div>
-  <div class="modal-backdrop" id="globalModal" aria-hidden="true" hidden>
-    <div class="modal" role="dialog" aria-modal="true" aria-label="Падрабязная інфармацыя">
-      <button class="modal-close" type="button" data-close-modal aria-label="Закрыць акно">×</button>
-      <div id="globalModalContent"></div>
-    </div>
-  </div>
-
   <div id="siteFooter" role="contentinfo" aria-label="Падвал сайта">
     <footer class="site-footer">
       <div class="container footer-inner">
@@ -76,6 +68,15 @@
     </footer>
   </div>
 
+
+  
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <div class="modal-backdrop" id="globalModal" aria-hidden="true" hidden>
+    <div class="modal" role="dialog" aria-modal="true" aria-label="Падрабязная інфармацыя">
+      <button class="modal-close" type="button" data-close-modal aria-label="Закрыць акно">×</button>
+      <div id="globalModalContent"></div>
+    </div>
+  </div>
   <noscript>
     <aside class="noscript-message">
       <p>Для паўнавартаснай працы сайта трэба ўключыць JavaScript. Вы можаце перайсці да асноўных раздзелаў:</p>
@@ -86,6 +87,7 @@
     </aside>
   </noscript>
 
+  <script src="js/storage.js"></script>
   <script src="js/data.js"></script>
   <script src="js/lang.js"></script>
   <script src="js/main.js"></script>

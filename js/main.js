@@ -1,12 +1,13 @@
 /* Асноўны інтэрфейс і навучальныя інтэрактыўныя модулі. */
 (()=>{
  const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
+ const store=window.SPStorage||{get:(k,d=null)=>{try{return localStorage.getItem(k)??d}catch(_){return d}},set:(k,v)=>{try{localStorage.setItem(k,String(v))}catch(_){}},remove:k=>{try{localStorage.removeItem(k)}catch(_){}}};
  const L=()=>getLang?getLang():'by', T=(by,ru)=>L()==='ru'?ru:by, esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
  window.SPRoutePhotoFallback=(img)=>{if(!img)return;if(img.dataset.fallbackDone==='1')return;img.dataset.fallbackDone='1';img.removeAttribute('src');img.style.display='none';const host=img.closest('.card-image,.ritual-media,.guide-stop-photo,.guide-theme-image,.place-story-hero,.heritage-map-focus,.heritage-card')||img.parentElement;if(host)host.classList.add('image-missing');};
  document.addEventListener('error',ev=>{const target=ev.target;if(target&&target.tagName==='IMG')window.SPRoutePhotoFallback(target);},true);
  const USER_LETTERS_KEY='spadchyna-user-letters-v1';
- function readUserLetters(){try{const a=JSON.parse(localStorage.getItem(USER_LETTERS_KEY)||'[]');return Array.isArray(a)?a:[]}catch(_){return []}}
- function upsertUserLetter(data){const letters=readUserLetters(),entry={id:data.id||('letter-'+Date.now()+'-'+Math.random().toString(36).slice(2,7)),title:data.title||T('Новы ліст','Новое письмо'),kind:data.kind||'story',text:data.text||'',date:data.date||new Date().toISOString(),updatedAt:new Date().toISOString()};const i=letters.findIndex(x=>x.id===entry.id);if(i>=0)letters[i]={...letters[i],...entry};else letters.unshift(entry);localStorage.setItem(USER_LETTERS_KEY,JSON.stringify(letters));return entry}
+ function readUserLetters(){try{const a=JSON.parse(store.get(USER_LETTERS_KEY,'[]')||'[]');return Array.isArray(a)?a:[]}catch(_){return []}}
+ function upsertUserLetter(data){const letters=readUserLetters(),entry={id:data.id||('letter-'+Date.now()+'-'+Math.random().toString(36).slice(2,7)),title:data.title||T('Новы ліст','Новое письмо'),kind:data.kind||'story',text:data.text||'',date:data.date||new Date().toISOString(),updatedAt:new Date().toISOString()};const i=letters.findIndex(x=>x.id===entry.id);if(i>=0)letters[i]={...letters[i],...entry};else letters.unshift(entry);store.set(USER_LETTERS_KEY,JSON.stringify(letters));return entry}
  window.SPUpsertUserLetter=upsertUserLetter;
  function shell(){
   const p=document.body.dataset.page;
@@ -353,7 +354,7 @@
   <div class="section-head" style="margin-top:36px"><div><p class="eyebrow">${T('ВАША КАЛЕКЦЫЯ','ВАША КОЛЛЕКЦИЯ')}</p><h2>${T('Мая калекцыя','Моя коллекция')}</h2></div><p>${T('Усе захаваныя аб’екты і матэрыялы сабраны ў адным месцы. Націсніце на картку, каб раскрыць апісанне.','Все сохранённые объекты и материалы собраны в одном месте. Нажмите на карточку, чтобы раскрыть описание.')}</p></div><div class="treasure-grid" id="treasureGrid"></div><div class="treasure-empty" id="treasureEmpty">${T('Пакуль калекцыя пустая. Адкрыйце каталог месцаў або абрадаў і націсніце «Захаваць у скарбонку», каб дадаць першыя скарбы.','Пока коллекция пуста. Откройте каталог мест или обрядов и нажмите «Сохранить в копилку», чтобы добавить первые сокровища.')}</div><p id="treasureCount" class="small"></p>
   <div class="block treasure-achievements-block" style="margin-top:34px"><p class="eyebrow">${T('ДАСЯГНЕННІ','ДОСТИЖЕНИЯ')}</p><h3>${T('Што ўжо атрымалася','Что уже получилось')}</h3><div id="treasureAchievements"></div></div>
   <div class="saved-routes-account" id="savedRoutesAccount"><div class="section-head" style="margin-top:36px"><div><p class="eyebrow">${T('ВАШЫ МАРШРУТЫ','ВАШИ МАРШРУТЫ')}</p><h2>${T('Захаваныя маршруты','Сохранённые маршруты')}</h2></div><p>${T('Захаваныя гатовыя маршруты застаюцца тут у тым самым браўзеры. Разгарніце картку, каб убачыць прыпынкі, або спампуйце спіс для паездкі.','Сохранённые готовые маршруты остаются здесь в том же браузере. Разверните карточку, чтобы увидеть остановки, или скачайте список для поездки.')}</p></div><div id="routeList" class="account-route-list"></div><div class="section-head" style="margin-top:36px"><div><p class="eyebrow">${T('ВАШЫ ЗВАРОТЫ','ВАШИ ОБРАЩЕНИЯ')}</p><h2>${T('Захаваныя паведамленні','Сохранённые сообщения')}</h2></div><p>${T('Тут захоўваюцца лакальныя копіі паведамленняў пра стан помнікаў і асабістых гісторый. Кожны запіс можна прачытаць або выдаліць асобна.','Здесь хранятся локальные копии сообщений о состоянии памятников и личных историй. Каждую запись можно прочитать или удалить отдельно.')}</p></div><div id="userLettersList" class="user-letters-list"></div></div></div></section>`;
-  const name=localStorage.getItem('spadchyna-profile-name')||'';$('#profileNameInput').value=name;$('#profileNameDisplay').textContent=name||T('даследчык','исследователь');$('#profileNameForm').onsubmit=e=>{e.preventDefault();const val=$('#profileNameInput').value.trim();localStorage.setItem('spadchyna-profile-name',val);$('#profileNameDisplay').textContent=val||T('даследчык','исследователь');toast(T('Профіль захаваны на гэтай прыладзе.','Профиль сохранён на этом устройстве.'))};
+  const name=store.get('spadchyna-profile-name','')||'';$('#profileNameInput').value=name;$('#profileNameDisplay').textContent=name||T('даследчык','исследователь');$('#profileNameForm').onsubmit=e=>{e.preventDefault();const val=$('#profileNameInput').value.trim();store.set('spadchyna-profile-name',val);$('#profileNameDisplay').textContent=val||T('даследчык','исследователь');toast(T('Профіль захаваны на гэтай прыладзе.','Профиль сохранён на этом устройстве.'))};
  }
  function renderGuide(){
   const el=$('#pageContent');
@@ -424,10 +425,10 @@
   const tripPrepKey='spadchyna-trip-prep-v1';
   const tripPrepChecks=$$('#routePrepChecklist [data-trip-check]');
   let tripPrepState={};
-  try{tripPrepState=JSON.parse(localStorage.getItem(tripPrepKey)||'{}')||{}}catch(_){tripPrepState={}}
+  try{tripPrepState=JSON.parse(store.get(tripPrepKey,'{}')||'{}')||{}}catch(_){tripPrepState={}}
   const updateTripPrepSummary=()=>{const done=tripPrepChecks.filter(c=>c.checked).length;const summary=$('#routePrepSummary');if(summary)summary.textContent=T(`Адзначана ${done} з ${tripPrepChecks.length} пунктаў падрыхтоўкі.`,`Отмечено ${done} из ${tripPrepChecks.length} пунктов подготовки.`)};
-  tripPrepChecks.forEach(check=>{check.checked=!!tripPrepState[check.dataset.tripCheck];check.addEventListener('change',()=>{tripPrepState[check.dataset.tripCheck]=check.checked;try{localStorage.setItem(tripPrepKey,JSON.stringify(tripPrepState))}catch(_){}updateTripPrepSummary()})});
-  $('#resetRoutePrep')?.addEventListener('click',()=>{tripPrepState={};tripPrepChecks.forEach(c=>c.checked=false);try{localStorage.removeItem(tripPrepKey)}catch(_){}updateTripPrepSummary()});
+  tripPrepChecks.forEach(check=>{check.checked=!!tripPrepState[check.dataset.tripCheck];check.addEventListener('change',()=>{tripPrepState[check.dataset.tripCheck]=check.checked;try{store.set(tripPrepKey,JSON.stringify(tripPrepState))}catch(_){}updateTripPrepSummary()})});
+  $('#resetRoutePrep')?.addEventListener('click',()=>{tripPrepState={};tripPrepChecks.forEach(c=>c.checked=false);try{store.remove(tripPrepKey)}catch(_){}updateTripPrepSummary()});
   updateTripPrepSummary();
   const guideRouteGrid=$('#guideRouteGrid');
   function openGuideRoute(routeId){
@@ -470,8 +471,8 @@
    return {id:'route-'+Date.now(),presetId:route.id,name:T(route.by,route.ru),items:route.ids.filter(id=>SP.places.some(p=>p.id===id)),titles,stops,date:new Date().toISOString(),note:T(route.descBy,route.descRu),purposeLabel:T(route.routeKind==='territorial'?'Тэрытарыяльны маршрут':'Тэматычны маршрут',route.routeKind==='territorial'?'Территориальный маршрут':'Тематический маршрут'),durationLabel:T(route.formatBy,route.formatRu),paceLabel:T('План наведвання трэба ўдакладніць','План посещения нужно уточнить')};
   }
   const routeStorageKey='spadchyna-routes-v1';
-  function readSavedRoutes(){try{const a=JSON.parse(localStorage.getItem(routeStorageKey)||'[]');return Array.isArray(a)?a:[]}catch(_){return []}}
-  function writeSavedRoutes(a){localStorage.setItem(routeStorageKey,JSON.stringify(a))}
+  function readSavedRoutes(){try{const a=JSON.parse(store.get(routeStorageKey,'[]')||'[]');return Array.isArray(a)?a:[]}catch(_){return []}}
+  function writeSavedRoutes(a){store.set(routeStorageKey,JSON.stringify(a))}
   // Upgrade routes saved by older versions so they include the same stop descriptions and research tasks.
   const oldSavedRoutes=readSavedRoutes();let didUpgrade=false;
   const upgradedRoutes=oldSavedRoutes.map(old=>{const route=allRoutes.find(x=>x.id===old.presetId);if(!route||old.stops?.length)return old;const packed=packSavedRoute(route);didUpgrade=true;return {...packed,...old,id:old.id||packed.id,items:Array.isArray(old.items)&&old.items.length?old.items:packed.items,titles:Array.isArray(old.titles)&&old.titles.length?old.titles:packed.titles,stops:packed.stops}});
