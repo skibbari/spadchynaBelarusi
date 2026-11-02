@@ -268,9 +268,8 @@ img, video, iframe { max-width: 100%; }
   .people-story img { height: auto; max-height: 280px; aspect-ratio: 4 / 3; }
   .story-fragment { align-items: flex-start; flex-wrap: wrap; }
   .story-move { margin-left: 0; }
-
-  /* Modals and images use the full phone viewport */
-  .modal-backdrop, .image-modal { padding: 10px; }
+  /* Detail modals use the available phone viewport. */
+  .modal-backdrop { padding: 10px; }
   .modal {
     width: 100%;
     max-width: 100%;
@@ -301,8 +300,6 @@ img, video, iframe { max-width: 100%; }
   .place-story-heading h2 { font-size: clamp(1.65rem, 7vw, 2.2rem); }
   .place-story-body { padding: 18px 15px 25px; }
   .place-story-actions { display: grid; }
-  .modal-close, .image-modal button { width: 44px; height: 44px; min-width: 44px; min-height: 44px; }
-  .image-modal img { max-width: 100%; max-height: 78dvh; object-fit: contain; }
 
   .site-footer { padding: 28px 0 calc(28px + env(safe-area-inset-bottom, 0px)); }
   .footer-inner { gap: 18px; }
@@ -576,9 +573,6 @@ body[data-page="treasure"] .account-avatar { display: none !important; }
   font-size: 16px !important;
 }
 .heritage-report-form input[type="date"]::-webkit-date-and-time-value { text-align: left; }
-.image-modal:not(.open) { display: none !important; }
-.image-modal > img { display: none; }
-.image-modal.open > img { display: block; }
 @media (max-width: 760px) {
   .route-preparation { padding: 16px !important; border-radius: 14px; }
   .route-preparation > .eyebrow {
@@ -638,3 +632,20 @@ body[data-page="treasure"] .account-avatar { display: none !important; }
   .route-prep-checklist label { padding: 10px !important; }
   .heritage-report-form input[type="date"] { padding-inline: 6px !important; }
 }
+
+
+/* Missing image assets: do not show a broken-image placeholder tile. */
+.image-missing::after { content: none !important; display: none !important; }
+.card-image.image-missing,
+.ritual-media.image-missing,
+.guide-stop-photo.image-missing,
+.guide-theme-image.image-missing {
+  display: none !important;
+  min-height: 0 !important;
+  height: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border: 0 !important;
+}
+.place-story-hero.image-missing { min-height: 0 !important; }
+.place-story-hero.image-missing > img { display: none !important; }
