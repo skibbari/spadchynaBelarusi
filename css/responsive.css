@@ -649,3 +649,17 @@ body[data-page="treasure"] .account-avatar { display: none !important; }
 }
 .place-story-hero.image-missing { min-height: 0 !important; }
 .place-story-hero.image-missing > img { display: none !important; }
+
+
+/* Consistent brown typography in both timeline implementations (desktop and mobile). */
+body .timeline-scroller .epoch-button,
+body .timeline-scroller .epoch-button b,
+body .timeline-scroller .epoch-button span,
+body .epoch-detail .eyebrow,
+body .epoch-detail h3,
+body .epoch-detail p,
+body .life-strip .life-item,
+body .life-strip .life-item b,
+body .life-strip .life-item span {
+  color: var(--brown) !important;
+}
